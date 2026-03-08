@@ -1,0 +1,6 @@
+requests
+pypdf
+sentence-transformers
+faiss-cpu
+matplotlib
+reportlab

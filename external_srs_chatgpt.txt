@@ -1,0 +1,181 @@
+1. Introduction
+1.1 Purpose
+
+This Software Requirements Specification (SRS) describes the functional and non-functional requirements for the Web-Based Library Management System. The purpose of this document is to provide a clear and structured description of system behavior for developers, testers, administrators, and stakeholders.
+
+1.2 Scope
+
+The Web-Based Library Management System enables users to register, log in, search for books, and borrow books from a digital catalog. The system manages borrowing limits, return deadlines, and notifications for overdue books.
+
+Administrative users can manage book records and generate reports. The system ensures secure password storage, supports multiple concurrent users, and is accessible through modern web browsers.
+
+1.3 Definitions, Acronyms, and Abbreviations
+Term	Definition
+SRS	Software Requirements Specification
+ISBN	International Standard Book Number
+1.4 References
+
+IEEE 830-1998 Recommended Practice for Software Requirements Specifications
+
+1.5 Overview
+
+This document provides a general system description followed by detailed functional and non-functional requirements.
+
+2. Overall Description
+2.1 Product Perspective
+
+The system is a web-based application accessible through modern web browsers. It provides functionality for book catalog management, borrowing operations, user account management, and administrative reporting.
+
+2.2 Product Functions
+
+The system shall:
+
+Allow users to register and log in.
+
+Allow users to search for books by title, author, or ISBN.
+
+Allow users to borrow books subject to borrowing limits.
+
+Enforce return deadlines for borrowed books.
+
+Send email reminders for overdue books.
+
+Allow administrators to manage book records.
+
+Display real-time book availability.
+
+Generate monthly reports for borrowed and returned books.
+
+2.3 User Classes and Characteristics
+2.3.1 Users
+
+Register and log in using email and password
+
+Search for books
+
+Borrow and return books
+
+2.3.2 Admin Users
+
+Manage book records (add, update, delete)
+
+Access system reports
+
+2.4 Operating Environment
+
+Web-based system
+
+Accessible via modern browsers including Chrome, Firefox, and Safari
+
+2.5 Design and Implementation Constraints
+
+Passwords must be stored encrypted.
+
+Sessions must expire after 30 minutes of inactivity.
+
+System must support at least 500 concurrent users.
+
+2.6 Assumptions and Dependencies
+
+Email service is available for sending reminders.
+
+Users have internet access to access the web application.
+
+3. Specific Requirements
+3.1 Functional Requirements
+3.1.1 User Registration and Authentication
+
+FR-1: The system shall allow users to register using email and password.
+
+FR-2: The system shall allow users to log in using their email and password.
+
+3.1.2 Book Search
+
+FR-3: The system shall allow users to search for books by title.
+
+FR-4: The system shall allow users to search for books by author.
+
+FR-5: The system shall allow users to search for books by ISBN.
+
+3.1.3 Borrowing Management
+
+FR-6: The system shall allow users to borrow books.
+
+FR-7: The system shall limit users to borrowing a maximum of 3 books at a time.
+
+FR-8: Borrowed books shall be returned within 14 days.
+
+3.1.4 Overdue Notification
+
+FR-9: The system shall automatically send an email reminder if a borrowed book is not returned within the specified time.
+
+3.1.5 Book Availability
+
+FR-10: The system shall display the real-time availability status of each book.
+
+3.1.6 Administrative Functions
+
+FR-11: Admin users shall be able to add book records.
+
+FR-12: Admin users shall be able to update book records.
+
+FR-13: Admin users shall be able to delete book records.
+
+FR-14: The system shall generate monthly reports of borrowed books.
+
+FR-15: The system shall generate monthly reports of returned books.
+
+3.2 External Interface Requirements
+3.2.1 User Interfaces
+
+User interface for registration and login
+
+Book search interface
+
+Book borrowing interface
+
+Administrative interface for managing books and reports
+
+3.2.2 Hardware Interfaces
+
+Not explicitly specified.
+
+3.2.3 Software Interfaces
+
+Email service interface for sending overdue reminders
+
+3.2.4 Communication Interfaces
+
+Secure web communication for browser access
+
+3.3 Performance Requirements
+
+PR-1: The system shall support at least 500 concurrent users without performance degradation.
+
+3.4 Security Requirements
+
+SR-1: The system shall store all user passwords in encrypted form.
+
+SR-2: User sessions shall expire after 30 minutes of inactivity.
+
+3.5 Logical Database Requirements
+
+The system shall store the following data:
+
+User accounts
+
+Book records
+
+Borrowing records
+
+Return records
+
+Book availability status
+
+3.6 Software System Attributes
+
+No additional attributes beyond performance, security, and browser compatibility requirements are specified.
+
+4. Appendices
+
+No appendices specified.

@@ -1,0 +1,32 @@
+{
+    "Our System": {
+        "correctness": 4.93,
+        "clarity": 4.4,
+        "verifiability": 4.7,
+        "traceability": 4.73,
+        "completeness": 4.57,
+        "consistency": 4.73,
+        "structure_compliance": 4.97,
+        "redundancy": 5.0
+    },
+    "ChatGPT-5.2": {
+        "correctness": 4.9,
+        "clarity": 4.57,
+        "verifiability": 4.57,
+        "traceability": 4.87,
+        "completeness": 4.67,
+        "consistency": 4.4,
+        "structure_compliance": 5.0,
+        "redundancy": 4.5
+    },
+    "Gemini-3": {
+        "correctness": 4.79,
+        "clarity": 4.37,
+        "verifiability": 4.57,
+        "traceability": 4.5,
+        "completeness": 4.37,
+        "consistency": 4.47,
+        "structure_compliance": 5.0,
+        "redundancy": 5.0
+    }
+}

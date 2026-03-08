@@ -1,0 +1,75 @@
+1. Introduction
+1.1 Purpose
+The purpose of this document is to define the functional and non-functional requirements for a web-based Library Management System. It serves as a guide for the development and testing phases of the project.
+
+1.2 Scope
+The system facilitates digital book discovery, borrowing logistics, and administrative inventory control. It includes automated email reminders for overdue items and administrative reporting tools.
+
+1.3 Definitions, Acronyms, and Abbreviations
+ISBN: International Standard Book Number.
+
+SRS: Software Requirements Specification.
+
+Encryption: The process of converting information or data into a code to prevent unauthorized access.
+
+2. Overall Description
+2.1 Product Perspective
+The Library Management System is a standalone web application designed to be accessed via modern web browsers. It manages a centralized database of books, users, and borrowing transactions.
+
+2.2 Product Functions
+User Management: Registration, secure login, and session handling.
+
+Catalog Services: Search by title, author, or ISBN with real-time availability.
+
+Circulation: Borrowing (limit of 3) and return tracking with a 14-day limit.
+
+Automation: Automatic email reminders for overdue books.
+
+Administration: CRUD (Create, Read, Update, Delete) operations on books and monthly report generation.
+
+2.3 User Classes and Characteristics
+General Users: Individuals who search for and borrow books.
+
+Admin Users: Personnel responsible for inventory management and viewing system reports.
+
+3. Specific Requirements
+3.1 Functional Requirements
+3.1.1 User Authentication and Access
+FR-1: Registration & Login: Users shall be able to register and login using their email and password.
+
+FR-2: Session Management: User sessions shall expire after 30 minutes of inactivity.
+
+FR-3: Secure Storage: All user passwords must be stored encrypted.
+
+3.1.2 Book Discovery and Circulation
+FR-4: Book Search: Users shall be able to search for books by title, author, or ISBN.
+
+FR-5: Real-time Availability: The system shall show the real-time availability of each book.
+
+FR-6: Borrowing Limits: Users shall be allowed to borrow up to 3 books at a time.
+
+FR-7: Borrowing Period: Borrowed books must be returned within 14 days.
+
+FR-8: Automated Reminders: If a book is not returned on time, the system shall automatically send an email reminder to the user.
+
+3.1.3 Administrative Functions
+FR-9: Inventory Management: Admin users shall be able to add, update, and delete book records.
+
+FR-10: Reporting: The system shall generate monthly reports of borrowed and returned books for the admin.
+
+3.2 External Interface Requirements
+User Interfaces: The system shall be accessible from modern web browsers including Chrome, Firefox, and Safari.
+
+Communication Interfaces: The system must integrate with an SMTP server to send automated email reminders.
+
+3.3 Non-Functional Requirements
+3.3.1 Performance Requirements
+Capacity: The system shall support at least 500 concurrent users without performance degradation.
+
+3.3.2 Security Requirements
+Data Protection: Passwords must be encrypted (as stated in FR-3).
+
+Access Control: Only Admin users shall have the authority to modify book records and view reports.
+
+3.4 Logical Database Requirements
+The database must track the relationships between users, books, and specific borrowing transactions, including timestamps for checkout and expected return dates.

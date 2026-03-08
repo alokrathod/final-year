@@ -1,0 +1,45 @@
+# ── RAG Data (heavy PDF files) ────────────────────────────────
+data/
+
+# ── Generated output files ────────────────────────────────────
+rag_index.faiss
+rag_chunks.pkl
+iteration_logs.json
+final_srs.txt
+final_srs.pdf
+convergence_plot.png
+srs_comparison.png
+srs_comparison.json
+srs_radar.png
+
+# ── External SRS files used for comparison ────────────────────
+external_srs_chatgpt.txt
+external_srs_gemini.txt
+input_requirements.txt
+
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Virtual environment ───────────────────────────────────────
+venv/
+env/
+.env
+.venv
+
+# ── OS files ──────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDE ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
