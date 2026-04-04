@@ -1,13 +1,13 @@
 import requests
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "mistral"
 
-def call_llm(prompt, temperature=0.2):
+
+def call_llm(prompt, model="mistral", temperature=0.2):
     response = requests.post(
         OLLAMA_URL,
         json={
-            "model": MODEL_NAME,
+            "model": model,
             "prompt": prompt,
             "stream": False,
             "temperature": temperature

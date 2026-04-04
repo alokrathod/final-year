@@ -51,7 +51,30 @@ Generate a complete Software Requirements Specification (SRS) following IEEE 830
 1. Use ONLY the requirements listed below as content.
 2. Do NOT invent, infer, or add any features not in the requirements.
 3. Do NOT reference any external systems, tools, or products.
-4. Do NOT use placeholder text like "[No specific ... provided]".
+
+4. EACH requirement MUST be:
+   - Atomic (one clear functionality)
+   - Unambiguous (no vague terms)
+   - TESTABLE and MEASURABLE
+
+5. For every requirement:
+   - Add measurable constraints where possible (e.g., limits, time, counts)
+   - Avoid vague words like "fast", "efficient", "user-friendly", "real-time"
+   - Use precise language that allows objective testing
+
+BAD EXAMPLES:
+- "The system shall be fast"
+- "The system shall be user-friendly"
+
+GOOD EXAMPLES:
+- "The system shall respond to search queries within 2 seconds under normal load"
+- "The system shall support at least 500 concurrent users without response time exceeding 3 seconds"
+
+6. Maintain strict traceability:
+   - Each requirement must clearly correspond to a user requirement
+   - Do NOT merge multiple requirements into one
+
+7. Do NOT use placeholder text like "[No specific ... provided]".
    For sections with no direct requirement, write one brief generic sentence.
 
 === REQUIRED IEEE 830 STRUCTURE ===

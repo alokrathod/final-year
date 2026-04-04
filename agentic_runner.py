@@ -160,6 +160,11 @@ def agentic_pipeline(
     # Step 1: Extract atomic requirements
     extracted = extract_requirements(user_input)
 
+    print(f"\nExtracted {len(extracted)} requirements:\n")
+
+    for req in extracted:
+        print(f"{req['id']}: {req['text']}")
+
     if not extracted:
         print("⚠️  Warning: Extraction failed or returned empty. Proceeding with raw user input as fallback.")
         extracted = [{"id": "REQ-001", "text": user_input}]

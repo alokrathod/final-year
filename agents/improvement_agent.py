@@ -11,16 +11,25 @@ You are an SRS refinement agent.
 Current Evaluation Scores:
 {evaluation}
 
-Current SRS to improve:
+Current SRS:
 {srs}
 
-Rules:
-- Do NOT invent new requirements.
-- Preserve original meaning.
-- Improve clarity and specificity.
-- Fix structural weaknesses.
-- Remove ambiguities.
-- Maintain requirement IDs.
+STRICT RULES:
+- DO NOT add new requirements
+- DO NOT create new requirement IDs
+- DO NOT introduce new features, roles, or functionality
+- ONLY improve wording, clarity, and measurability
+
+FOCUS ON:
+- Making requirements TESTABLE (add measurable criteria)
+- Improving correctness (align strictly with user input)
+- Reducing ambiguity
+- Fixing weak metrics ONLY
+
+IMPORTANT:
+- Preserve ALL original requirement IDs
+- Keep requirements atomic
+- Do NOT expand scope
 
 Return improved full SRS only.
 """
