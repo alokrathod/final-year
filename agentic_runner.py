@@ -10,23 +10,9 @@ from modules.ai_suggestions import find_ai_suggested_requirements
 from pdf_exporter import export_srs_to_pdf_with_legend
 from modules.planner import generate_improvement_plan
 
-
-# ------------------------------------------------
-# Metric weights for composite threshold scoring
-# ------------------------------------------------
-
-# Weights aligned with Krishna et al. (2024) importance ordering
-# Per-requirement metrics weighted higher than document-wide
-METRIC_WEIGHTS = {
-    "correctness":          0.20,
-    "clarity":              0.15,
-    "verifiability":        0.15,
-    "traceability":         0.15,
-    "completeness":         0.15,
-    "consistency":          0.10,
-    "structure_compliance": 0.05,
-    "redundancy":           0.05,
-}
+# ---------------------------
+# Average scoring 
+# ---------------------------
 
 # Likert scale: 1-5
 # Threshold = 4.5 composite average — the weighted average of all metrics
@@ -34,23 +20,20 @@ METRIC_WEIGHTS = {
 COMPOSITE_THRESHOLD = 4.5
 
 
-def compute_weighted_score(scores):
+def compute_average_score(scores):
     """
-    Computes weighted composite Likert score (1.0 - 5.0).
-    Threshold of 4.0 = Agree level on Likert scale.
+    Computes simple average Likert score (1.0 - 5.0).
     """
-    total = 0.0
-    for metric, weight in METRIC_WEIGHTS.items():
-        total += scores.get(metric, 1) * weight
-    return round(total, 2)
+    if not scores:
+        return 0.0
+    return round(sum(scores.values()) / len(scores), 2)
 
 
 # ------------------------------------------------
-# Fixed RAG query — style and format only
+# RAG query — style and format only
 # ------------------------------------------------
 
 # RAG is used exclusively for IEEE 830 writing style and format patterns.
-# Domain content is intentionally excluded to prevent contamination.
 RAG_STYLE_QUERY = "IEEE 830 SRS format writing style requirements structure"
 
 
@@ -151,7 +134,7 @@ def agentic_pipeline(
     index=None,
     chunks=None,
     max_iterations=5,
-    composite_threshold=4.5    # Weighted average of all metrics must reach this
+    composite_threshold=4.5
 ):
 
     memory = []
@@ -171,7 +154,7 @@ def agentic_pipeline(
     else:
         print(f"\nExtracted {len(extracted)} atomic requirements.")
 
-    # Step 2: RAG context retrieval (style/format only, no domain content)
+    # Step 2: RAG context retrieval 
     rag_context = None
     if index and chunks:
         print(f"RAG query (style/format): {RAG_STYLE_QUERY}")
@@ -195,34 +178,34 @@ def agentic_pipeline(
         print(f"{'='*50}")
 
         scores = evaluate_srs(user_input, current_srs, extracted_requirements=extracted)
-        composite_score = compute_weighted_score(scores)
+        avg_score = compute_average_score(scores)
 
         memory.append({
             "iteration": iteration,
             "scores": scores,
-            "composite_score": composite_score
+            "avg_score": avg_score
         })
 
         print("\nScores:")
         for k, v in scores.items():
             print(f"  {k}: {v}")
-        print(f"\n  Composite (weighted Likert): {composite_score} / 5.0")
+        print(f"\n  Composite (weighted Likert): {avg_score} / 5.0")
 
         # --- Best score tracking: revert to best if regression detected ---
-        if composite_score > best_score:
-            best_score = composite_score
+        if avg_score > best_score:
+            best_score = avg_score
             best_srs = current_srs
             print(f"  ✔  New best score: {best_score}/5.0 — saved.")
         else:
-            print(f"  ⚠️  Score regressed ({composite_score} < {best_score}). Reverting to best SRS.")
+            print(f"  ⚠️  Score regressed ({avg_score} < {best_score}). Reverting to best SRS.")
             current_srs = best_srs
 
         # Check: weighted composite average must be >= composite_threshold
-        if composite_score >= composite_threshold:
-            print(f"\n✅ Composite threshold ({composite_threshold}/5.0) reached at iteration {iteration}.")
+        if avg_score >= composite_threshold:
+            print(f"\n✅ Average threshold ({composite_threshold}/5.0) reached at iteration {iteration}.")
             break
 
-        print(f"\n  Composite score {composite_score}/5.0 — needs +{round(composite_threshold - composite_score, 2)} to reach threshold ({composite_threshold}).")
+        print(f"\n  Average score {avg_score}/5.0 — needs +{round(composite_threshold - avg_score, 2)} to reach threshold ({composite_threshold}).")
 
         # Identify passing vs failing metrics to guide targeted improvement
         failing_metrics = {k: v for k, v in scores.items() if v < composite_threshold}

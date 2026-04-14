@@ -11,6 +11,7 @@ convergence_plot.png
 srs_comparison.png
 srs_comparison.json
 srs_radar.png
+phase2_output.pdf
 
 # ── External SRS files used for comparison ────────────────────
 external_srs_chatgpt.txt
